@@ -1,3 +1,16 @@
+/* Copyright (C) 2017 ETH Zurich, University of Bologna
+ * All rights reserved.
+ *
+ * This code is under development and not yet released to the public.
+ * Until it is released, the code is under the copyright of ETH Zurich
+ * and the University of Bologna, and may contain unpublished work.
+ * Any reuse/redistribution should only be under explicit permission.
+ *
+ * Bug fixes and contributions will eventually be released under the
+ * SolderPad open hardware license and under the copyright of ETH Zurich
+ * and the University of Bologna.
+ */
+
 module io_generic_fifo
 #(
     parameter DATA_WIDTH = 32,

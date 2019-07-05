@@ -67,7 +67,6 @@ module apb_uart_sv
     logic             fifo_rx_ready;
     logic             rx_ready;
 
-    logic             [7:0] fifo_tx_data;
     logic             [8:0] fifo_rx_data;
 
     logic             [7:0] tx_data;
@@ -156,7 +155,7 @@ module apb_uart_sv
         .ready_i            ( tx_ready                      ),
 
         .valid_i            ( fifo_tx_valid                 ),
-        .data_i             ( fifo_tx_data                  ),
+        .data_i             ( PWDATA[7:0]                   ),
         // not needed since we are getting the status via the fifo population
         .ready_o            (                               )
     );
@@ -223,7 +222,6 @@ module apb_uart_sv
                     end
                     else
                     begin
-                        fifo_tx_data = PWDATA[7:0];
                         fifo_tx_valid = 1'b1;
                     end
                 end

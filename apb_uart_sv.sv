@@ -32,11 +32,11 @@ module apb_uart_sv
     output logic                      event_o    // interrupt/event output
 );
     // register addresses
-    parameter RBR = 3'h0, THR = 3'h0, DLL = 3'h0, IER = 3'h1, DLM = 3'h1, IIR = 3'h2,
+    localparam RBR = 3'h0, THR = 3'h0, DLL = 3'h0, IER = 3'h1, DLM = 3'h1, IIR = 3'h2,
               FCR = 3'h2, LCR = 3'h3, MCR = 3'h4, LSR = 3'h5, MSR = 3'h6, SCR = 3'h7;
 
-    parameter TX_FIFO_DEPTH = 16; // in bytes
-    parameter RX_FIFO_DEPTH = 16; // in bytes
+    localparam TX_FIFO_DEPTH = 16; // in bytes
+    localparam RX_FIFO_DEPTH = 16; // in bytes
 
     logic [2:0]       register_adr;
     logic [9:0][7:0]  regs_q, regs_n;

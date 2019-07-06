@@ -32,11 +32,11 @@ module apb_uart_sv
     output logic                      event_o    // interrupt/event output
 );
     // register addresses
-    parameter RBR = 3'h0, THR = 3'h0, DLL = 3'h0, IER = 3'h1, DLM = 3'h1, IIR = 3'h2,
+    localparam RBR = 3'h0, THR = 3'h0, DLL = 3'h0, IER = 3'h1, DLM = 3'h1, IIR = 3'h2,
               FCR = 3'h2, LCR = 3'h3, MCR = 3'h4, LSR = 3'h5, MSR = 3'h6, SCR = 3'h7;
 
-    parameter TX_FIFO_DEPTH = 16; // in bytes
-    parameter RX_FIFO_DEPTH = 16; // in bytes
+    localparam TX_FIFO_DEPTH = 16; // in bytes
+    localparam RX_FIFO_DEPTH = 16; // in bytes
 
     logic [2:0]       register_adr;
     logic [9:0][7:0]  regs_q, regs_n;
@@ -67,7 +67,6 @@ module apb_uart_sv
     logic             fifo_rx_ready;
     logic             rx_ready;
 
-    logic             [7:0] fifo_tx_data;
     logic             [8:0] fifo_rx_data;
 
     logic             [7:0] tx_data;
@@ -156,7 +155,7 @@ module apb_uart_sv
         .ready_i            ( tx_ready                      ),
 
         .valid_i            ( fifo_tx_valid                 ),
-        .data_i             ( fifo_tx_data                  ),
+        .data_i             ( PWDATA[7:0]                   ),
         // not needed since we are getting the status via the fifo population
         .ready_o            (                               )
     );
@@ -223,7 +222,6 @@ module apb_uart_sv
                     end
                     else
                     begin
-                        fifo_tx_data = PWDATA[7:0];
                         fifo_tx_valid = 1'b1;
                     end
                 end
